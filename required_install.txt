@@ -1,0 +1,9 @@
+pandas
+seaborn
+scikit-learn
+scikit-image
+scikit-plot
+scipy
+pandas
+tensorflow-cpu
+numpy
