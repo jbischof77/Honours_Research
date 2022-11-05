@@ -5,12 +5,14 @@ import matplotlib.pyplot as plt
 
 api_key = "RGAPI-16e158f4-bcd4-4e05-81d9-68940c75400b"
 watcher = LolWatcher(api_key)
-region_v4 = "NA1"
-region_v5 = "AMERICAS"
+# region_v4 = "NA1"
+region_v4 = "EUW1"
+# region_v5 = "AMERICAS"
+region_v5 = "EUROPE"
 
-player = watcher.summoner.by_name(region_v4, 'Doublelift')
+player = watcher.summoner.by_name(region_v4, 'GhostWalker7447')
 
-matches = watcher.match.matchlist_by_puuid(region_v5, player['puuid'], count = 100)                                              #get the last 20 games played of the player specified in player
+matches = watcher.match.matchlist_by_puuid(region_v5, player['puuid'], count = 10)                                              #get the last 20 games played of the player specified in player
 
 timeline = []
 i = 0
@@ -96,17 +98,17 @@ for matchId in matches:
                 timeline.append(timeline_row)                                                                               #creates a list of dictionaries of the events of a match
                 individualTimelines.append(timeline_row)
     
-    # df = pd.DataFrame(individualTimelines)
-    # df.to_csv(r'game{0}_data.csv'.format(i), index = False)
+    df = pd.DataFrame(individualTimelines)
+    df.to_csv(r'new_player_game{0}_data.csv'.format(i), index = False)
 
     i += 1
         
 df = pd.DataFrame(timeline)                                                                                                 #makes a data frame from the list of dictionaries
-df.to_csv(r'timeline_data_large.csv', index = False)
+df.to_csv(r'new_player_data.csv', index = False)
 
 # print(df)
 
-img = plt.imread("Images\Summoner's_Rift_Minimap.jpg")
+img = plt.imread("Images/Summoners_Rift_Minimap.jpg")
 fig, ax =  plt.subplots(figsize = (10, 10))
 
 sns.scatterplot(x = 'x', y = 'y', hue = 'killerTeam', data = df, ax = ax, style = 'type')

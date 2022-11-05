@@ -62,7 +62,7 @@ def GameTimelineForRoles(kills, palette, pos, train_df):
         # print(kill_df)
         # quit()
 
-        img_path = "Images\\timeline_{}_specific_champion_and_tower_kills.png".format(pos[i - 1])
+        img_path = "Images\\large_timeline_{}_specific_champion_and_tower_kills.png".format(pos[i - 1])
         title = "Timeline {}".format(pos[i - 1])
 
         fig, ax = plt.subplots(1, 1)
@@ -76,9 +76,9 @@ def GameTimelineForRoles(kills, palette, pos, train_df):
         plt.legend(bbox_to_anchor = (1, 1), loc = 2, borderaxespad = 0.)
         manager = plt.get_current_fig_manager()
         manager.full_screen_toggle()
-        plt.show()
-        # plt.savefig(img_path, bbox_inches = 'tight')
-        # plt.close()
+        # plt.show()
+        plt.savefig(img_path, bbox_inches = 'tight')
+        plt.close()
 
 def fullGameTimePlot(palette):
     for i in range(0, 20):
@@ -115,7 +115,7 @@ if __name__ == "__main__":
             "KILL_MULTI",
             "KILL_ACE"]
     
-    MapEventsForRoles(palette, pos, team, train_df)
+    # MapEventsForRoles(palette, pos, team, train_df)
     # fullGameTimePlot(palette)
     new_train_df = TowerPlacements(train_df)
     GameTimelineForRoles(kills, palette, pos, new_train_df)
